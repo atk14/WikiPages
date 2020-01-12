@@ -34,7 +34,7 @@ Installation
 
 Copy migration to a proper filename into your project:
 
-    cp vendor/atk14/wiki-pages/src/db/migrations/0129_wiki_pages.sql db/migrations/
+    cp vendor/atk14/wiki-pages/src/db/migrations/0150_wiki_pages.sql db/migrations/
 
 Linking a proper style form either for Bootstrap 3 (less) or Bootstrap 4 (scss).
 
