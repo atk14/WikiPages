@@ -1,0 +1,20 @@
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
+
+.wiki {
+	font-family: $font-family-serif;
+	font-size: 18px;
+	line-height: 1.6em;
+	p {
+		text-align: justify;
+	}
+
+	h1, h2, h3, h4 {
+		font-family: $font-family-serif;
+	}
+	h2, h3, h4 {
+		font-weight: bold;
+	}
+	img {
+		@extend .img-fluid;
+	}
+}
