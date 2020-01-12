@@ -16,19 +16,19 @@ Installation
     cd path/to/your/project/
     composer require atk14/wiki-pages
 
-    ln -s ../../../app/forms/admin/wiki_pages app/forms/admin/
-    ln -s ../../../app/forms/admin/wiki_attachments app/forms/admin/
-    ln -s ../../../app/views/admin/wiki_pages app/views/admin/
-    ln -s ../../../app/views/admin/wiki_attachments app/views/admin/
-    ln -s ../../app/models/wiki_page.php app/models/
-    ln -s ../../app/models/wiki_attachment.php app/models/
-    ln -s ../../app/helpers/modifier.wiki_markdown.php app/helpers/
-    ln -s ../../app/helpers/block.wiki_markdown.php app/helpers/
-    ln -s ../../../app/controllers/admin/wiki_pages_controller.php app/controllers/admin/
-    ln -s ../../../app/controllers/admin/wiki_attachments_controller.php app/controllers/admin/
-    ln -s ../../../test/models/tc_wiki_attachment.php test/models/
-    ln -s ../../../test/models/tc_wiki_page.php test/models/
-    ln -s ../../../config/routers/wiki_pages_router.php config/routers/
+    ln -s ../../../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_pages app/forms/admin/
+    ln -s ../../../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_attachments app/forms/admin/
+    ln -s ../../../vendor/atk14/wiki-pages/src/app/views/admin/wiki_pages app/views/admin/
+    ln -s ../../../vendor/atk14/wiki-pages/src/app/views/admin/wiki_attachments app/views/admin/
+    ln -s ../../vendor/atk14/wiki-pages/src/app/models/wiki_page.php app/models/
+    ln -s ../../vendor/atk14/wiki-pages/src/app/models/wiki_attachment.php app/models/
+    ln -s ../../vendor/atk14/wiki-pages/src/app/helpers/modifier.wiki_markdown.php app/helpers/
+    ln -s ../../vendor/atk14/wiki-pages/src/app/helpers/block.wiki_markdown.php app/helpers/
+    ln -s ../../../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php app/controllers/admin/
+    ln -s ../../../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_attachments_controller.php app/controllers/admin/
+    ln -s ../../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_attachment.php test/models/
+    ln -s ../../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_page.php test/models/
+    ln -s ../../../vendor/atk14/wiki-pages/src/config/routers/wiki_pages_router.php config/routers/
 
 
 
