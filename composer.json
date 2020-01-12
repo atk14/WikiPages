@@ -1,0 +1,21 @@
+{
+        "name": "atk14/wiki-pages",
+        "type": "library",
+        "description": "A set of features that allow to maintain the knowledge database (wiki) in administration",
+        "keywords": [],
+        "homepage": "https://github.com/atk14/WikiPages",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "ATK14 Development Team",
+                        "homepage": "https://github.com/orgs/atk14/people"
+                }
+        ],
+        "require": {
+                "php": ">=5.4.0"
+        },
+        "require-dev": {
+        },
+        "autoload": {
+        }
+}
