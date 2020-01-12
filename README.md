@@ -28,7 +28,7 @@ Installation
     ln -s ../../../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_attachments_controller.php app/controllers/admin/
     ln -s ../../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_attachment.php test/models/
     ln -s ../../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_page.php test/models/
-    ln -s ../../../vendor/atk14/wiki-pages/src/config/routers/wiki_pages_router.php config/routers/
+    ln -s ../../vendor/atk14/wiki-pages/src/config/routers/wiki_pages_router.php config/routers/
 
 
 
@@ -38,11 +38,11 @@ Copy migration to a proper filename into your project:
 
 Linking a proper style form either for Bootstrap 3 (less) or Bootstrap 4 (scss).
 
-    ln -s ../../../vendor/atk14/wiki-pages/src/public/styles/wiki_pages.less public/admin/styles/
+    ln -s ../../../vendor/atk14/wiki-pages/src/public/admin/styles/wiki_pages.less public/admin/styles/
 
     # or
 
-    ln -s ../../../vendor/atk14/wiki-pages/src/public/styles/_wiki_pages.scss public/admin/styles/
+    ln -s ../../../vendor/atk14/wiki-pages/src/public/admin/styles/_wiki_pages.scss public/admin/styles/
 
 Now include the selected style to your application style.
 
