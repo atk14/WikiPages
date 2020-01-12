@@ -1,9 +1,9 @@
-Wngiki Pages
+Wiki Pages
 ----------
 
 A set of features that allow to maintain the knowledge database (wiki) in administration.
 
-Editable Fragments is designed for applications built on Atk14Skelet.
+Wiki Pages is designed for applications built on Atk14Skelet.
 
 Prerequisites
 =============
