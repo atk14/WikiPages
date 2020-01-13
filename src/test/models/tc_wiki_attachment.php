@@ -35,7 +35,7 @@ class TcWikiAttachment extends TcBase {
 
 		$this->assertNotEquals($att_plain->getChecksum(),$att_html->getChecksum());
 
-		$content = Files::GetFileContent(__DIR__ . "/../../atk14/src/files/test/sample_files/sample.jpg");
+		$content = Files::GetFileContent(ATK14_DOCUMENT_ROOT . "/atk14/src/files/test/sample_files/sample.jpg");
 		$att_image = WikiAttachment::CreateNewRecord([
 			"wiki_page_id" => $wp,
 			"filename" => "sample.jpg",
@@ -67,7 +67,7 @@ class TcWikiAttachment extends TcBase {
 			"content" => "# Hello There!"
 		]);
 
-		$content = Files::GetFileContent(__DIR__ . "/../../atk14/src/files/test/sample_files/sample.jpg");
+		$content = Files::GetFileContent(ATK14_DOCUMENT_ROOT . "/atk14/src/files/test/sample_files/sample.jpg");
 		$att = WikiAttachment::CreateNewRecord([
 			"wiki_page_id" => $wp,
 			"filename" => "sample.jpg",
