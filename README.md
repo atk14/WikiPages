@@ -26,8 +26,8 @@ Installation
     ln -s ../../vendor/atk14/wiki-pages/src/app/helpers/block.wiki_markdown.php app/helpers/
     ln -s ../../../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php app/controllers/admin/
     ln -s ../../../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_attachments_controller.php app/controllers/admin/
-    ln -s ../../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_attachment.php test/models/
-    ln -s ../../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_page.php test/models/
+    ln -s ../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_attachment.php test/models/
+    ln -s ../../vendor/atk14/wiki-pages/src/test/models/tc_wiki_page.php test/models/
     ln -s ../../vendor/atk14/wiki-pages/src/config/routers/wiki_pages_router.php config/routers/
 
 
