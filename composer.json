@@ -15,7 +15,7 @@
                 "php": ">=5.4.0",
                 "pupiq/image-scaler": "^0.1",
                 "atk14/confirmation-field": "^1.0",
-                "atk14/drink-markdown": "^0.3"
+                "atk14/drink-markdown": "0.* >=0.3 "
         },
         "require-dev": {
         },
