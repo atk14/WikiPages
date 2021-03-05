@@ -48,7 +48,7 @@ class WikiAttachmentsController extends AdminController {
 				}else{
 					try {
 						$scaler = new \Pupiq\ImageScaler($tmp_filename);
-						if($scaler->scaleTo(80,80)){
+						if($scaler->scaleTo(80,80,["background_color" => "#ffffff"])){
 							$scaler->saveTo($tmp_filename.".xthumbnail");
 							$tmp_filename = $tmp_filename.".xthumbnail";
 						}
