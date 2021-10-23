@@ -2,6 +2,10 @@
 
 All notable changes to WikiPages will be documented in this file.
 
+## [0.1.4] - 2021-10-10
+
+- The package pupiq/image-scaler is required in version ^0.5
+
 ## [0.1.3] - 2021-10-10
 
 - The package pupiq/image-scaler is required in version ^0.4
