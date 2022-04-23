@@ -134,6 +134,9 @@ class WikiPage extends ApplicationModel {
 	}
 
 	function isEditableBy($user){
+		if(!$user || !$user->isAdmin()){
+			return false;
+		}
 		return !$this->isDeleted() && $this->isCurrentRevision();
 	}
 
@@ -142,6 +145,9 @@ class WikiPage extends ApplicationModel {
 	}
 
 	function isDeletableBy($user){
+		if(!$user || !$user->isAdmin()){
+			return false;
+		}
 		return $this->isDeletable();
 	}
 
