@@ -8,12 +8,13 @@
 
 {else}
 
-	<table class="table table-striped">
+	<table class="table">
 		<thead>
 			<tr>
 				{sortable key=name}<th>{t}Stránka{/t}</th>{/sortable}
 				<th>{t}Titulek{/t}</th>
 				{sortable key=updated_at}<th>{t}Datum poslední změny{/t}</th>{/sortable}
+				<th>{t}Autor poslední změny{/t}</th>
 			</tr>
 		</thead>
 
