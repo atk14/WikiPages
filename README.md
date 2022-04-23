@@ -36,14 +36,39 @@ Copy migration to a proper filename into your project:
 
     cp vendor/atk14/wiki-pages/src/db/migrations/0150_wiki_pages.sql db/migrations/
 
-Linking a proper style form either for Bootstrap 3 (less) or Bootstrap 4 (scss).
-
-    ln -s ../../../vendor/atk14/wiki-pages/src/public/admin/styles/wiki_pages.less public/admin/styles/
-
-    # or
+Linking a proper style form either for Bootstrap 4 (scss) or Bootstrap 3 (less).
 
     ln -s ../../../vendor/atk14/wiki-pages/src/public/admin/styles/_wiki_pages.scss public/admin/styles/
 
+    # or for Bootstrap 3
+
+    ln -s ../../../vendor/atk14/wiki-pages/src/public/admin/styles/wiki_pages.less public/admin/styles/
+
+
 Now include the selected style to your application style.
+
+Load WikiRouter:
+
+    <?php
+    // file: config/routers/load.php
+
+    // ...
+
+    Atk14Url::AddRouter("AdminRouter");
+    Atk14Url::AddRouter("admin","WikiPagesRouter");
+
+    // ...
+
+Add a link to Wiki Pages to the administration:
+
+    <?php
+    // file: app/controllers/admin/admin.php
+
+    // ..
+
+    array(_("404 Redirections"),    "error_redirections"),
+    array(_("Wiki Pages"),          "wiki_pages,wiki_attachments"),
+
+    // ..
 
 [//]: # ( vim: set ts=2 et: )
