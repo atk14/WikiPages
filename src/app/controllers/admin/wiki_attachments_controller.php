@@ -66,7 +66,6 @@ class WikiAttachmentsController extends AdminController {
 		}
 
 		$tmp_filename = $wiki_attachment->getTmpFilename();
-		$this->render_template = false;
 
 		if($format == "thumbnail"){
 			if($wiki_attachment->isImage()){
@@ -89,6 +88,7 @@ class WikiAttachmentsController extends AdminController {
 			}
 		}
 
+		$this->render_template = false;
 		$this->response->setHeader("Content-Type",$wiki_attachment->getMimeType());
 		$this->response->setHeader(sprintf('Content-Disposition: inline; filename="%s"',$wiki_attachment->getFilename()));
 		$this->response->buffer->addFile($tmp_filename);

@@ -21,15 +21,16 @@
 				<td>{a_destroy controller="wiki_attachments" action="destroy" token=$attachment->getToken() _confirm="{t}Opravdu chcete smazat tuto přílohu?{/t}"}{!"remove"|icon}{/a_destroy}</td>
 			</tr>
 			<tr>
-				<td colspan="3" style="border-top: none; padding-top: 0px; padding-bottom: 0px;">
+				<td colspan="3" style="border-top: none; padding-top: 0px;">
 					<small>{t created_at=$attachment->getCreatedAt()|format_date user=$attachment->getCreatedByUser()}nahráno %1 uživatelem %2{/t}{if $attachment->getUpdatedAt()},
 						{t updated_at=$attachment->getUpdatedAt()|format_date user=$attachment->getUpdatedByUser()}změněno %1 uživatelem %2{/t}
 					{/if}
 					</small>
 				</td>
 			</tr>
+			{if $action=="edit"}
 			<tr>
-				<td colspan="4" style="border-top: none;">
+				<td colspan="4" style="border-top: none; padding-top: 0px;">
 					<span class="badge badge-primary" title="{if $attachment->isImage()}{t}odkaz na originální obrázek{/t}{else}{t}odkaz na přílohu{/t}{/if}">{!"link"|icon}</span>
 					<small><code>[{$attachment->getFilename()}]({$attachment->getRelativeUrl()})</code></small>
 					{if $attachment->isImage()}
@@ -45,6 +46,7 @@
 					{/if}
 				</td>
 			</tr>
+			{/if}
 		</tbody>
 	{/foreach}
 </table>

@@ -2,7 +2,7 @@
 	<td>{highlight_search_query}{a action="detail" name=$wiki_page->getName()}{$wiki_page->getName()}{/a}{/highlight_search_query}</td>
 	<td>{highlight_search_query}{$wiki_page->getTitle()}{/highlight_search_query}</td>
 	<td>{if $wiki_page->getUpdatedAt()}{$wiki_page->getUpdatedAt()|format_datetime}{else}{$wiki_page->getCreatedAt()|format_datetime}{/if}</td>
-	<td>{$wiki_page->getUpdatedByUser()}</td>
+	<td>{$wiki_page->getUpdatedByUser()|default:$wiki_page->getCreatedByUser()|default:$mdash}</td>
 </tr>
 <tr>
 	<td colspan="4" style="border-top: none;">
