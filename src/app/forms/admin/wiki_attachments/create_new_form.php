@@ -11,7 +11,5 @@ class CreateNewForm extends WikiAttachmentsForm {
 			"label" => _("Nahradit přílohu se stejným názvem"),
 			"required" => false,
 		]));
-
-		$this->set_button_text(_("Nahrát přílohu"));
 	}
 }

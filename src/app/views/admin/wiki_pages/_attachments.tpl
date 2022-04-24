@@ -9,7 +9,7 @@
 	{foreach $attachments as $attachment}
 		<tbody>
 			<tr>
-				<td rowspan="2">{a action="wiki_attachments/detail" id=$attachment->getId()}<img src="{link_to action="wiki_attachments/detail" id=$attachment->getId() format=thumbnail}" width="80" height="80">{/a}</td>
+				<td rowspan="2">{a action="wiki_attachments/detail" id=$attachment->getId()}<img src="{link_to action="wiki_attachments/detail" id=$attachment->getId() format=thumbnail}" width="80" height="80" class="img-thumbnail">{/a}</td>
 				<td>
 					{a action="wiki_attachments/detail" id=$attachment->getId()}<strong>{$attachment->getFilename()}</strong>{/a}<br>
 					<small>{$attachment->getMimeType()}</small>
@@ -21,7 +21,7 @@
 				<td>{a_destroy controller="wiki_attachments" action="destroy" token=$attachment->getToken() _confirm="{t}Opravdu chcete smazat tuto přílohu?{/t}"}{!"remove"|icon}{/a_destroy}</td>
 			</tr>
 			<tr>
-				<td colspan="3" style="border-top: none;">
+				<td colspan="3" style="border-top: none; padding-top: 0px; padding-bottom: 0px;">
 					<small>{t created_at=$attachment->getCreatedAt()|format_date user=$attachment->getCreatedByUser()}nahráno %1 uživatelem %2{/t}{if $attachment->getUpdatedAt()},
 						{t updated_at=$attachment->getUpdatedAt()|format_date user=$attachment->getUpdatedByUser()}změněno %1 uživatelem %2{/t}
 					{/if}
@@ -49,4 +49,4 @@
 	{/foreach}
 </table>
 
-<p>{a action="wiki_attachments/create_new" wiki_page_id=$wiki_page}{!"plus-circle"|icon} {t}nahrát přílohu{/t}{/a}</p>
+<p>{a action="wiki_attachments/create_new" wiki_page_id=$wiki_page}{!"plus-circle"|icon} {t}nahrát obrázek nebo přílohu{/t}{/a}</p>

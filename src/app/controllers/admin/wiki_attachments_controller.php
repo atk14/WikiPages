@@ -6,7 +6,7 @@ if(!defined("WIKI_BODY_MAX_WIDTH")){
 class WikiAttachmentsController extends AdminController {
 
 	function create_new(){
-		$this->page_title = _("Nahrání nové přílohy");
+		$this->page_title = _("Nový obrázek nebo příloha");
 
 		$wiki_page = $this->_find("wiki_page","wiki_page_id");
 		if(!$wiki_page){
