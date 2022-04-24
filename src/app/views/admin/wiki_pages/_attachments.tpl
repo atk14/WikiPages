@@ -3,7 +3,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th colspan="4">{t}Přílohy{/t}</th>
+			<th colspan="4">{t}Obrázky a přílohy{/t}</th>
 		</tr>
 	</thead>
 	{foreach $attachments as $attachment}
@@ -28,8 +28,25 @@
 					</small>
 				</td>
 			</tr>
+			<tr>
+				<td colspan="4" style="border-top: none;">
+					<span class="badge badge-primary" title="{if $attachment->isImage()}{t}odkaz na originální obrázek{/t}{else}{t}odkaz na přílohu{/t}{/if}">{!"link"|icon}</span>
+					<small><code>[{$attachment->getFilename()}]({$attachment->getRelativeUrl()})</code></small>
+					{if $attachment->isImage()}
+						<br>
+						<small><span class="badge badge-success" title="{t}malý obrázek{/t}">{!"image"|icon}</span></small>
+						<small><code>![{$attachment->getFilename()}]({$attachment->getRelativeUrl("quarter")})</code></small>
+						<br>
+						<span class="badge badge-success" title="{t}středně velký obrázek{/t}">{!"image"|icon}</span>
+						<small><code>![{$attachment->getFilename()}]({$attachment->getRelativeUrl("half")})</code></small>
+						<br>
+						<big><span class="badge badge-success" title="{t}velký obrázek{/t}">{!"image"|icon}</span></big>
+						<small><code>![{$attachment->getFilename()}]({$attachment->getRelativeUrl("full")})</code></small>
+					{/if}
+				</td>
+			</tr>
 		</tbody>
 	{/foreach}
 </table>
 
-			<p>{a action="wiki_attachments/create_new" wiki_page_id=$wiki_page}{!"plus-circle"|icon} {t}nahrát přílohu{/t}{/a}</p>
+<p>{a action="wiki_attachments/create_new" wiki_page_id=$wiki_page}{!"plus-circle"|icon} {t}nahrát přílohu{/t}{/a}</p>

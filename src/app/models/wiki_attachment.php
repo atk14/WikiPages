@@ -107,4 +107,43 @@ class WikiAttachment extends ApplicationModel {
 	function getUpdatedByUser(){
 		return Cache::Get("User",$this->getUpdatedByUserId());
 	}
+
+	/**
+	 *
+	 *	$wiki_attachment->getUrl();
+	 *	$wiki_attachment->getUrl(["with_hostname" => true]);
+	 *
+	 *	// specify image size
+	 * 	$wiki_attachment->getUrl("thumbnail"); // "thumbnail", "full", "half", "quarter"
+	 * 	$wiki_attachment->getUrl("thumbnail",["with_hostname" => true]);
+	 */
+	function getUrl($size_or_options = "",$options = []){
+		if(is_array($size_or_options)){
+			$options = $size_or_options;
+			$size_or_options = "";
+		}
+
+		$size = $size_or_options;
+
+		$params = [
+			"controller" => "wiki_attachments",
+			"action" => "detail",
+			"id" => $this,
+		];
+
+		if($size_or_options){
+			$params["size"] = $size_or_options;
+		}
+
+		return Atk14Url::BuildLink($params,$options);
+	}
+
+	function getRelativeUrl($size = ""){
+		$page = $this->getWikiPage();
+		$url = sprintf("%s/files/%s",urlencode($page->getName()),urlencode($this->getFilename()));
+		if($size){
+			$url .= "?size=".urlencode($size);
+		}
+		return $url;
+	}
 }
