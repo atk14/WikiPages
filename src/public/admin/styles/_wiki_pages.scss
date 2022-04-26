@@ -1,7 +1,6 @@
-$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
-
+// styles for wiki content
 .wiki {
-	font-family: $font-family-serif;
+	position: relative;
 	font-size: 18px;
 	line-height: 1.6em;
 	p {
@@ -10,13 +9,20 @@ $font-family-serif: Georgia, "Times New Roman", Times, serif !default;
 			float: left;
 			padding: 0 1rem 1rem 0;
 		}
+		font-weight: 200;
 	}
 
 	h1, h2, h3, h4 {
 		font-family: $font-family-sans-serif;
+		clear: both;
 	}
-	h2, h3, h4 {
+	h1, h2, h3, h4, h5 {
 		font-weight: bold;
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+	h1, h2 {
+		letter-spacing: -0.02em;
 	}
 	img {
 		@extend .img-fluid;
@@ -26,5 +32,36 @@ $font-family-serif: Georgia, "Times New Roman", Times, serif !default;
     display: block;
     content: "";
     clear: both;
+  }
+}
+
+.wiki > .btn-group:first-child {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+// styles for attachments table in admin
+.wiki-attachments {
+  .iobject-code-wrap {
+    border-top: 1px solid rgba($gray-500,0.75);
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: flex-start;
+    .btn {
+      white-space: nowrap;
+      align-self: center;
+      margin-left: 1ch;
+
+    }
+    .iobject-code {
+      flex-grow: 10;
+      font-size: 0.75rem;
+    }
+    .badge-wrap {
+      display: inline-block;
+      flex-basis: 4ch;
+      flex-shrink: 0;
+    }
   }
 }
