@@ -1,0 +1,23 @@
+.wiki-attachments {
+  .iobject-code-wrap {
+    border-top: 1px solid rgba($gray-500,0.75);
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: flex-start;
+    .btn {
+      white-space: nowrap;
+      align-self: center;
+      margin-left: 1ch;
+
+    }
+    .iobject-code {
+      flex-grow: 10;
+      font-size: 0.75rem;
+    }
+    .badge-wrap {
+      display: inline-block;
+      flex-basis: 4ch;
+      flex-shrink: 0;
+    }
+  }
+}
