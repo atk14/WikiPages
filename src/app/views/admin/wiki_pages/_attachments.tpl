@@ -1,6 +1,7 @@
 {assign attachments WikiAttachment::GetInstancesFor($wiki_page)}
+{capture assign="clipboard_copy_btn"}<a href="#" class="iobject-copy-code btn btn-sm btn-outline-primary float-right" role="button" data-toggle="popover" data-trigger="focus" data-content="{t}Copied!{/t}" data-placement="top" tabindex="0">{!"copy"|icon} {t}Copy{/t}</a>{/capture}
 
-<table class="table">
+<table class="table wiki-attachments">
 	<thead>
 		<tr>
 			<th colspan="4">{t}Obrázky a přílohy{/t}</th>
@@ -31,18 +32,27 @@
 			{if $action=="edit"}
 			<tr>
 				<td colspan="4" style="border-top: none; padding-top: 0px;">
-					<span class="badge badge-primary" title="{if $attachment->isImage()}{t}odkaz na originální obrázek{/t}{else}{t}odkaz na přílohu{/t}{/if}">{!"link"|icon}</span>
-					<small><code>[{$attachment->getFilename()}]({$attachment->getRelativeUrl()})</code></small>
+					<div class="iobject-code-wrap">
+						<span class="badge-wrap"><span class="badge badge-primary" title="{if $attachment->isImage()}{t}odkaz na originální obrázek{/t}{else}{t}odkaz na přílohu{/t}{/if}">{!"link"|icon}</span></span>
+						<code class="iobject-code">[{$attachment->getFilename()}]({$attachment->getRelativeUrl()})</code>
+						{!$clipboard_copy_btn}
+				</div>
 					{if $attachment->isImage()}
-						<br>
-						<small><span class="badge badge-success" title="{t}malý obrázek{/t}">{!"image"|icon}</span></small>
-						<small><code>![{$attachment->getFilename()}]({$attachment->getRelativeUrl("quarter")})</code></small>
-						<br>
-						<span class="badge badge-success" title="{t}středně velký obrázek{/t}">{!"image"|icon}</span>
-						<small><code>![{$attachment->getFilename()}]({$attachment->getRelativeUrl("half")})</code></small>
-						<br>
-						<big><span class="badge badge-success" title="{t}velký obrázek{/t}">{!"image"|icon}</span></big>
-						<small><code>![{$attachment->getFilename()}]({$attachment->getRelativeUrl("full")})</code></small>
+						<div class="iobject-code-wrap">
+							<span class="badge-wrap"><small><span class="badge badge-success" title="{t}malý obrázek{/t}">{!"image"|icon}</span></small></span>
+							<code class="iobject-code">![{$attachment->getFilename()}]({$attachment->getRelativeUrl("quarter")})</code>
+							{!$clipboard_copy_btn}
+						</div>
+						<div class="iobject-code-wrap">
+							<span class="badge-wrap"><span class="badge badge-success" title="{t}středně velký obrázek{/t}">{!"image"|icon}</span></span>
+							<code class="iobject-code">![{$attachment->getFilename()}]({$attachment->getRelativeUrl("half")})</code>
+							{!$clipboard_copy_btn}
+						</div>
+						<div class="iobject-code-wrap">
+							<span class="badge-wrap"><big><span class="badge badge-success" title="{t}velký obrázek{/t}">{!"image"|icon}</span></big></span>
+							<code class="iobject-code">![{$attachment->getFilename()}]({$attachment->getRelativeUrl("full")})</code>
+							{!$clipboard_copy_btn}
+						</div>
 					{/if}
 				</td>
 			</tr>
