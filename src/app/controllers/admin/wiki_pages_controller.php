@@ -99,6 +99,8 @@ class WikiPagesController extends AdminController {
 	function create_new(){
 		$this->page_title = _("Vytvořit novou stránku");
 
+		$this->_save_return_uri();
+
 		$title = $this->params->getString("name") ? $this->params->getString("name") : _("Nadpis");
 		$this->form->set_initial([
 			"name" => $this->params->getString("name"),
@@ -112,13 +114,15 @@ class WikiPagesController extends AdminController {
 			}
 			$d["wiki_name"] = $this->wiki_name;
 			$wiki_page = WikiPage::CreateNewRecord($d);
-			$this->_redirect_to(["action" => "detail", "name" => $wiki_page->getName()]);
+			$this->_redirect_back(["action" => "detail", "name" => $wiki_page->getName()]);
 		}
 	}
 
 	function edit(){
 		$this->page_title = _("Editace stránky");
 		$this->breadcrumbs[] = [$this->wiki_page->getName(),$this->_link_to(["action" => "detail", "name" => $this->wiki_page->getName()])];
+
+		$this->_save_return_uri();
 
 		$this->form->set_initial($this->wiki_page);
 		$this->form->set_initial("content",$this->wiki_page->getContent());
@@ -131,7 +135,7 @@ class WikiPagesController extends AdminController {
 			$this->wiki_page->updateContent($d["content"],$this->logged_user);
 			$this->wiki_page->updateName($d["name"]);
 
-			$this->_redirect_to(["action" => "detail", "name" => $this->wiki_page->getName()]);
+			$this->_redirect_back(["action" => "detail", "name" => $this->wiki_page->getName()]);
 		}
 	}
 
