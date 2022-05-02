@@ -11,6 +11,7 @@
 class WikiPagesRouter extends Atk14Router {
 
 	function setUp(){
+		$this->addRoute('/<lang>/wiki/',["controller" => "wiki_pages", "action" => "index"]);
 		$this->addRoute('/<lang>/wiki/<name>',["controller" => "wiki_pages", "action" => "detail", "name" => '/[^\/]+/']);
 	}
 
