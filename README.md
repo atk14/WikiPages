@@ -67,7 +67,7 @@ Add a link to Wiki Pages to the administration:
     // ..
 
     array(_("404 Redirections"),    "error_redirections"),
-    array(_("Wiki Pages"),          "wiki_pages,wiki_attachments"),
+    array(_("Wiki"),          "wiki_pages,wiki_attachments"),
 
     // ..
 
