@@ -2,6 +2,12 @@
 
 All notable changes to WikiPages will be documented in this file.
 
+## [0.1.5] - 2023-08-03
+
+* 8911b93 - Added sidebar with attachments to editing page
+* 68706e6 - Images can be rendered in 3 sizes: quarter, half and full
+* bc29991 - Only a logged-in administrator can edit and delete a wiki page
+
 ## [0.1.4] - 2021-10-10
 
 - The package pupiq/image-scaler is required in version ^0.5
