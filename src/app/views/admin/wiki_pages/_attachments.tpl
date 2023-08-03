@@ -10,7 +10,7 @@
 	{foreach $attachments as $attachment}
 		<tbody>
 			<tr>
-				<td rowspan="2">{a action="wiki_attachments/detail" id=$attachment->getId()}<img src="{link_to action="wiki_attachments/detail" id=$attachment->getId() format=thumbnail}" width="80" height="80" class="img-thumbnail">{/a}</td>
+				<td rowspan="2" width="100">{a action="wiki_attachments/detail" id=$attachment->getId()}<img src="{link_to action="wiki_attachments/detail" id=$attachment->getId() format=thumbnail}" width="80" height="80" class="img-thumbnail">{/a}</td>
 				<td>
 					{a action="wiki_attachments/detail" id=$attachment->getId()}<strong>{$attachment->getFilename()}</strong>{/a}<br>
 					<small>{$attachment->getMimeType()}</small>
@@ -18,8 +18,8 @@
 						<br><small>{$attachment->getImageWidth()}&times;{$attachment->getImageHeight()}</small>
 					{/if}
 				</td>
-				<td>{$attachment->getFilesize()|format_bytes}</td>
-				<td>{a_destroy controller="wiki_attachments" action="destroy" token=$attachment->getToken() _confirm="{t}Opravdu chcete smazat tuto přílohu?{/t}"}{!"remove"|icon}{/a_destroy}</td>
+				<td nowrap="nowrap"><small>{$attachment->getFilesize()|format_bytes}</small></td>
+				<td>{a_destroy controller="wiki_attachments" action="destroy" token=$attachment->getToken() _title="{t}smazat přílohu{/t}" _class="text-danger" _confirm="{t}Opravdu chcete smazat tuto přílohu?{/t}"}{!"remove"|icon}{/a_destroy}</td>
 			</tr>
 			<tr>
 				<td colspan="3" style="border-top: none; padding-top: 0px;">
@@ -32,11 +32,6 @@
 			{if $action=="edit"}
 			<tr>
 				<td colspan="4" style="border-top: none; padding-top: 0px;">
-					<div class="iobject-code-wrap">
-						<span class="badge-wrap"><span class="badge badge-primary" title="{if $attachment->isImage()}{t}odkaz na originální obrázek{/t}{else}{t}odkaz na přílohu{/t}{/if}">{!"link"|icon}</span></span>
-						<code class="iobject-code">[{$attachment->getFilename()}]({$attachment->getRelativeUrl()})</code>
-						{!$clipboard_copy_btn}
-				</div>
 					{if $attachment->isImage()}
 						<div class="iobject-code-wrap">
 							<span class="badge-wrap"><small><span class="badge badge-success" title="{t}malý obrázek{/t}">{!"image"|icon}</span></small></span>
@@ -54,6 +49,11 @@
 							{!$clipboard_copy_btn}
 						</div>
 					{/if}
+					<div class="iobject-code-wrap">
+						<span class="badge-wrap"><span class="badge badge-primary" title="{if $attachment->isImage()}{t}odkaz na originální obrázek{/t}{else}{t}odkaz na přílohu{/t}{/if}">{!"link"|icon}</span></span>
+						<code class="iobject-code">[{$attachment->getFilename()}]({$attachment->getRelativeUrl()})</code>
+						{!$clipboard_copy_btn}
+					</div>
 				</td>
 			</tr>
 			{/if}
