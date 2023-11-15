@@ -10,16 +10,20 @@
  */
 class WikiPagesRouter extends Atk14Router {
 
+	var $wiki_url_prefix = "wiki";
+	var $wiki_name = "wiki";
+	var $wiki_controller = "wiki_pages";
+
 	function setUp(){
-		$this->addRoute('/<lang>/wiki/',["controller" => "wiki_pages", "action" => "index"]);
-		$this->addRoute('/<lang>/wiki/<name>',["controller" => "wiki_pages", "action" => "detail", "name" => '/[^\/]+/']);
+		$this->addRoute("/<lang>/$this->wiki_url_prefix/",["controller" => $this->wiki_controller, "action" => "index"]);
+		$this->addRoute("/<lang>/$this->wiki_url_prefix/<name>",["controller" => $this->wiki_controller, "action" => "detail", "name" => '/[^\/]+/']);
 	}
 
 	function recognize($uri){
-		if(preg_match('/^\/([a-z]{2})\/wiki\/([^\/]+)\/files\/([^\/]+)/',$uri,$matches)){
+		if(preg_match('/^\/([a-z]{2})\/'.$this->wiki_url_prefix.'\/([^\/]+)\/files\/([^\/]+)/',$uri,$matches)){
 			$wiki_page_name = $matches[2];
 			$filename = urldecode($matches[3]);
-			$wiki_page = WikiPage::FindFirst("wiki_name","wiki","name",$wiki_page_name,["use_cache" => true]);
+			$wiki_page = WikiPage::FindFirst("wiki_name",$this->wiki_name,"name",$wiki_page_name,["use_cache" => true]);
 			if(!$wiki_page){ return; }
 			$wa = WikiAttachment::FindFirst("wiki_page_id",$wiki_page,"filename",$filename);
 			if(!$wa){ return; }
@@ -34,9 +38,9 @@ class WikiPagesRouter extends Atk14Router {
 		if($this->controller!="wiki_attachments" || $this->action!="detail"){ return; }
 
 		if($wa = Cache::Get("WikiAttachment",$this->params->getInt("id"))){
-			if($wa->getWikiPage()->getWikiName()!="wiki"){ return; }
+			if($wa->getWikiPage()->getWikiName()!=$this->wiki_name){ return; }
 			$this->params->del("id");
-			return sprintf('/%s/wiki/%s/files/%s',$this->lang,$wa->getWikiPage()->getName(),urlencode($wa->getFilename()));
+			return sprintf("/%s/$this->wiki_url_prefix/%s/files/%s",$this->lang,$wa->getWikiPage()->getName(),urlencode($wa->getFilename()));
 		}
 	}
 }
