@@ -2,6 +2,10 @@
 
 All notable changes to WikiPages will be documented in this file.
 
+## [0.1.6] - 2023-12-07
+
+* 6a9ceb3 - WikiPagesRouter improved
+
 ## [0.1.5] - 2023-08-03
 
 * 8911b93 - Added sidebar with attachments to editing page
