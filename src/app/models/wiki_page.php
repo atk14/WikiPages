@@ -5,6 +5,37 @@ class WikiPage extends ApplicationModel {
 		return WikiPage::FindFirst("wiki_name",$wiki_name,"name",$name,["order_by" => "revision DESC"]);
 	}
 
+	static function PageExists($name,$wiki_name = "wiki",$options = []){
+		static $CACHE = [];
+		
+		$options += [
+			"_inject_to_cache" => false,
+			"_remove_from_cache" => false,
+		];
+
+		if(!isset($CACHE[$wiki_name])){
+			$dbmole = self::GetDbmole();
+			$pages =  $dbmole->selectIntoArray("SELECT DISTINCT(name) FROM wiki_pages WHERE wiki_name=:wiki_name AND NOT deleted ORDER BY name",[":wiki_name" => $wiki_name]);
+			$CACHE[$wiki_name] = array_combine($pages,$pages);
+		}
+
+		if($options["_inject_to_cache"]){
+			$CACHE[$wiki_name][$name] = $name;
+		}
+
+		if($options["_remove_from_cache"]){
+			unset($CACHE[$wiki_name][$name]);
+		}
+
+		return isset($CACHE[$wiki_name][$name]);
+	}
+
+	static function CreateNewRecord($values,$options = []){
+		$out = parent::CreateNewRecord($values,$options);
+		self::PageExists($out->getName(),$out->getWikiName(),["_inject_to_cache" => true]);
+		return $out;
+	}
+
 	/**
 	 *
 	 * foreach(WikiPage::GetAllRevisionsByName("ImportArticles") as $revision => $wp){
@@ -96,7 +127,7 @@ class WikiPage extends ApplicationModel {
 		$this->s($values);
 
 		if($new_revision_required){
-			WikiPage::CreateNewRecord($data);
+			self::CreateNewRecord($data);
 		}
 	}
 
@@ -152,6 +183,7 @@ class WikiPage extends ApplicationModel {
 	}
 
 	function destroy($destroy_for_real = false){
+		self::PageExists($this->getName(),$this->getWikiName(),["_remove_from_cache" => true]);
 		if(!$destroy_for_real){
 			$this->s([
 				"name" => $this->getName()."~deleted-".$this->getId(),
