@@ -10,9 +10,9 @@ class WikiPagesForm extends AdminForm {
 		$this->add_field("name",new RegexField('/^([A-Z][a-z0-9]*)+$/',[
 			"label" => _("Označení stránky ve formátu Wiki"),
 			"hints" => [
-				"Napoveda",
 				"ImportDat",
-				"PrechodNaRok2000"
+				"PrechodNaRok2000",
+				"Napoveda",
 			],
 			"max_length" => 255,
 		]));
