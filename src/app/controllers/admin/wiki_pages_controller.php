@@ -96,7 +96,7 @@ class WikiPagesController extends AdminController {
 
 		$content = $wiki_page->getContent();
 		Atk14Require::Helper("modifier.wiki_markdown");
-		$content = smarty_modifier_wiki_markdown($content);
+		$content = smarty_modifier_wiki_markdown($content,$wiki_page->getWikiName());
 		$pattern = '/^<h1(|\s[^>]*)>(?<page_title>.+?)<\/h1>/';
 		$content = preg_replace($pattern,'',$content); // odstraneni nadpisu <h1>
 
