@@ -20,6 +20,19 @@ class WikiPagesRouter extends Atk14Router {
 	}
 
 	function recognize($uri){
+		// Wiki Page editing, e.g. /en/wiki/Index--edit 
+		if(preg_match('/^\/([a-z]{2})\/'.$this->wiki_url_prefix.'\/([^\/]+)--edit/',$uri,$matches)){
+			$wiki_page_name = $matches[2];
+			$wiki_page = WikiPage::FindFirst("wiki_name",$this->wiki_name,"name",$wiki_page_name,["use_cache" => true]);
+			if(!$wiki_page){ return; }
+			$this->lang = $matches[1];
+			$this->controller = $this->wiki_controller;
+			$this->action = "edit";
+			$this->params["id"] = $wiki_page->getId();
+			return;
+		}
+
+		// Wiki Attachment detail, e.g. /en/wiki/Index/files/Gandhi_smiling.jpg
 		if(preg_match('/^\/([a-z]{2})\/'.$this->wiki_url_prefix.'\/([^\/]+)\/files\/([^\/]+)/',$uri,$matches)){
 			$wiki_page_name = $matches[2];
 			$filename = urldecode($matches[3]);
@@ -31,10 +44,16 @@ class WikiPagesRouter extends Atk14Router {
 			$this->controller = "wiki_attachments";
 			$this->action = "detail";
 			$this->params["id"] = $wa->getId();
+			return;
 		}
 	}
 
 	function build(){
+		if($this->controller=="wiki_pages" && $this->action=="edit" && ($wp = WikiPage::FindFirst("wiki_name",$this->wiki_name,"id",$this->params->getInt("id")))){
+			$this->params->del("id");
+			return sprintf("/%s/$this->wiki_url_prefix/%s--edit",$this->lang,$wp->getName());
+		}
+
 		if($this->controller!="wiki_attachments" || $this->action!="detail"){ return; }
 
 		if($wa = Cache::Get("WikiAttachment",$this->params->getInt("id"))){
