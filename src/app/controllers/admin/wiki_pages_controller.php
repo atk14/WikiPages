@@ -56,6 +56,17 @@ class WikiPagesController extends AdminController {
 
 		if(!$wiki_page = $this->_find_wiki_page($name)){
 			$this->tpl_data["name"] = $name;
+			$params = [
+				"action" => "create_new",
+				"name" => $name,
+			];
+			if($suggested_title = $this->params->getString("suggested_title")){
+				$params["suggested_title"] = $suggested_title;
+			}
+			if($return_uri = $this->params->getString("return_uri")){
+				$params["return_uri"] = $return_uri;
+			}
+			$this->tpl_data["create_new_link"] = $this->_link_to($params);
 			$this->template_name = "page_not_found";
 			$this->page_title = sprintf(_("Stránka %s nenalezena"),$name);
 			$this->response->setStatusCode(404);
@@ -102,6 +113,9 @@ class WikiPagesController extends AdminController {
 		$this->_save_return_uri();
 
 		$title = $this->params->getString("name") ? $this->params->getString("name") : _("Nadpis");
+		if($suggested_title = $this->params->getString("suggested_title")){
+			$title = $suggested_title;
+		}
 		$this->form->set_initial([
 			"name" => $this->params->getString("name"),
 			"content" => "# $title\n\n"

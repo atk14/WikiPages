@@ -10,7 +10,7 @@
 		</p>
 
 		<p>
-			{a action="create_new" name=$name _class="btn btn-default"}{t}Vytvořit stránku?{/t}{/a}
+			<a href="{$create_new_link}" class="btn btn-default">{t}Vytvořit stránku?{/t}</a>
 		</p>
 
 	</div>
