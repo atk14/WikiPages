@@ -15,9 +15,12 @@
 				{a action="destroy" id=$wiki_page}{!"remove"|icon} {t}Delete{/t}{/a}
 			{/if}
 		{/dropdown_menu}
+	
+		{highlight_search_query}
 		<h1>{$wiki_page->getTitle()}</h1>
 
 		{!$content}
+		{/highlight_search_query}
 		</div>
 
 	</div>
