@@ -10,7 +10,7 @@ class WikiPagesController extends AdminController {
 			return;
 		}
 
-		$this->page_title = $this->wiki_name_humanized;
+		$this->page_title = $this->breadcrumbs[] = $this->wiki_name_humanized . " - " . _("Vyhledávání");
 
 		($d = $this->form->validate($this->params)) || ($d = $this->form->get_initial());
 
